@@ -1,4 +1,5 @@
 import 'package:define_todo_app/core/theme/app_theme.dart';
+import 'package:define_todo_app/features/home/view/widgets/list_tile_widget.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -12,36 +13,31 @@ class SettingsPage extends StatelessWidget {
     final typography = AppTheme.of(context).typography;
     return Scaffold(
       backgroundColor: colors.text,
+      appBar: AppBar(
+        backgroundColor: colors.text,
+        foregroundColor: Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black,
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.arrow_back_rounded, size: spaces.space_100 * 3.6),
+        ),
+        title: Text("Settings", style: typography.h600),
+        centerTitle: true,
+      ),
       body: Column(
         children: [
           SizedBox(
-            height: spaces.space_500 * 1.1,
+            height: MediaQuery.sizeOf(context).height / 20,
           ),
-          Row(
-            children: [
-              Padding(
-                  padding: EdgeInsets.only(
-                      left: spaces.space_200, right: spaces.space_900 * 1.7),
-                  child: InkWell(
-                    child: Icon(
-                      Icons.arrow_back_rounded,
-                      size: spaces.space_100 * 3.6,
-                    ),
-                    onTap: () {},
-                  )),
-              Text(
-                "Settings",
-                style: typography.h600,
-              )
-            ],
-          ),
+
           // user data part.
           Padding(
             padding: EdgeInsets.symmetric(horizontal: spaces.space_500),
             child: Column(
               children: [
                 SizedBox(
-                  height: spaces.space_300,
+                  height: MediaQuery.sizeOf(context).height / 30,
                 ),
                 Row(
                   children: [
@@ -83,7 +79,7 @@ class SettingsPage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: spaces.space_300,
+                  height: MediaQuery.sizeOf(context).height / 30,
                 ),
                 //user description.
                 Text(
@@ -93,90 +89,12 @@ class SettingsPage extends StatelessWidget {
                 SizedBox(
                   height: spaces.space_900,
                 ),
-                // icons notification.
-                InkWell(
-                  child: SizedBox(
-                    child: Row(
-                      children: [
-                        const Icon(Icons.notifications),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width / 15,
-                        ),
-                        Text(
-                          "Notification",
-                          style: typography.h300,
-                        )
-                      ],
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-                SizedBox(
-                  height: MediaQuery.sizeOf(context).height / 10 / 4,
-                ),
-                // icons General.
-                InkWell(
-                  child: SizedBox(
-                    child: Row(
-                      children: [
-                        const Icon(Icons.settings),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width / 15,
-                        ),
-                        Text(
-                          "General",
-                          style: typography.h300,
-                        )
-                      ],
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-                SizedBox(
-                  height: MediaQuery.sizeOf(context).height / 10 / 4,
-                ),
-                // icons Account.
-                InkWell(
-                  child: SizedBox(
-                    child: Row(
-                      children: [
-                        const Icon(Icons.person),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width / 15,
-                        ),
-                        Text(
-                          "Account",
-                          style: typography.h300,
-                        )
-                      ],
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-                SizedBox(
-                  height: MediaQuery.sizeOf(context).height / 10 / 4,
-                ),
-                // icons About.
-                InkWell(
-                  child: SizedBox(
-                    child: Row(
-                      children: [
-                        const Icon(Icons.person),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width / 15,
-                        ),
-                        Text(
-                          "About",
-                          style: typography.h300,
-                        )
-                      ],
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-                SizedBox(
-                  height: MediaQuery.sizeOf(context).height / 10 / 4,
-                ),
+                // icons part.
+                const ListTileWidget(
+                    text: "Notifications", icon: Icons.notifications),
+                const ListTileWidget(text: "General", icon: Icons.settings),
+                const ListTileWidget(text: "Account", icon: Icons.person),
+                const ListTileWidget(text: "About", icon: Icons.info),
               ],
             ),
           ),

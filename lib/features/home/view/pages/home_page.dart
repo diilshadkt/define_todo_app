@@ -6,6 +6,21 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.amber,);
+    return Scaffold(
+      backgroundColor: Colors.amber,
+      body: Column(
+        children: [
+          Row(
+            children: [
+              CircleAvatar(
+                radius: MediaQuery.sizeOf(context).width / 12,
+                backgroundImage:
+                    const AssetImage("assets/images/img_profile.jpg"),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
