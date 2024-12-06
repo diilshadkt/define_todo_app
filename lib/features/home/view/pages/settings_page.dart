@@ -40,27 +40,66 @@ class SettingsPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: spaces.space_500),
             child: Column(
               children: [
+                SizedBox(
+                  height: spaces.space_300,
+                ),
                 Row(
                   children: [
                     CircleAvatar(
                       radius: MediaQuery.sizeOf(context).width / 12,
+                      backgroundImage:
+                          const AssetImage("assets/images/img_profile.jpg"),
                     ),
                     SizedBox(
                       width: MediaQuery.sizeOf(context).width / 25,
                     ),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text("Malak Idrissi"), Text("Rabat, Morocco")],
+                      children: [
+                        Text(
+                          "Malak Idrissi",
+                          style: typography.h400,
+                        ),
+                        Text(
+                          "Rabat, Morocco",
+                          style: typography.code,
+                        )
+                      ],
                     ),
                     SizedBox(
                       width: MediaQuery.sizeOf(context).width / 4.9,
                     ),
-                    CircleAvatar(
-                      backgroundColor: colors.secondary,
-                      radius: MediaQuery.sizeOf(context).width / 16,
-                    )
+                    InkWell(
+                      child: CircleAvatar(
+                        backgroundColor: colors.secondary,
+                        radius: MediaQuery.sizeOf(context).width / 16,
+                        child: Icon(
+                          Icons.edit,
+                          color: colors.text,
+                        ),
+                      ),
+                      onTap: () {},
+                    ),
                   ],
                 ),
+                SizedBox(
+                  height: spaces.space_300,
+                ),
+                //user description.
+                Text(
+                  "Hi! My name is Malak,I'm a community manager from Rabat, Morocco",
+                  style: typography.h200.copyWith(color: colors.secondary),
+                ),
+                SizedBox(
+                  height: spaces.space_900,
+                ),
+                // icons part.
+                const Row(
+                  children: [
+                    Icon(Icons.notifications),
+                    
+                  ],
+                )
               ],
             ),
           ),
