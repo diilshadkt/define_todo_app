@@ -1,16 +1,12 @@
 
 import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:define_todo_app/core/widgets/textfield_widget.dart';
-import 'package:define_todo_app/features/auth/view/pages/signup_page.dart';
-import 'package:define_todo_app/features/auth/view/widgets/forgot_password_button_widget.dart';
 import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.dart';
-import 'package:define_todo_app/features/home/view/pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class LoginPage extends StatelessWidget {
-  static const routePath = '/login';
-  const LoginPage({super.key});
+class SignupPage extends StatelessWidget {
+  static const routePath = '/signup';
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,51 +17,55 @@ class LoginPage extends StatelessWidget {
       backgroundColor: colors.text,
       body: Column(
         children: [
-          SizedBox(
-            height: spaces.space_300 * 5,
-          ),
-          Center(
-            child: Image(
-              image: const AssetImage("assets/images/img_app_logo.png"),
-              height: spaces.space_300 * 6,
-            ),
+          Row(
+            children: [
+              SizedBox(
+                height: spaces.space_500 * 6,
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: spaces.space_250, right: spaces.space_500),
+                child: Icon(
+                  Icons.arrow_back_rounded,
+                  size: spaces.space_100 * 3.6,
+                ),
+              ),
+              Text(
+                "Create an Account",
+                style: typography.h800,
+              ),
+            ],
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: spaces.space_600),
             child: Column(
               children: [
+                const TextfieldWidget(hintText: "Full Name"),
                 SizedBox(
-                  height: spaces.space_150,
+                  height: spaces.space_250,
                 ),
-                const TextfieldWidget(
-                  hintText: "Email",
-                ),
+                const TextfieldWidget(hintText: "Email"),
                 SizedBox(
                   height: spaces.space_250,
                 ),
                 const TextfieldWidget(hintText: "Password"),
                 SizedBox(
-                  height: spaces.space_50,
+                  height: spaces.space_250,
                 ),
-                const Row(
-                  children: [
-                    ForgotPasswordButtonWidget(),
-                  ],
-                ),
+                const TextfieldWidget(hintText: "Confirm Password"),
                 SizedBox(
                   height: spaces.space_200 * 2,
                 ),
-                // submit button part.
-                 SubmitButtonWidget(),
+                const SubmitButtonWidget(),
                 SizedBox(
                   height: spaces.space_400,
                 ),
-                // don't have an account part.
+                // Already have an account part.
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account?",
+                      "Already have an account?",
                       style: typography.code.copyWith(color: colors.secondary),
                     ),
                     SizedBox(
@@ -73,14 +73,12 @@ class LoginPage extends StatelessWidget {
                     ),
                     InkWell(
                       child: Text(
-                        "Register",
+                        "Log In",
                         style: typography.h200.copyWith(
                             color: colors.secondary,
                             decoration: TextDecoration.underline),
                       ),
-                      onTap: () {
-                        context.go(SignupPage.routePath);
-                      },
+                      onTap: () {},
                     )
                   ],
                 ),

@@ -1,9 +1,9 @@
-
 import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class SubmitButtonWidget extends StatelessWidget {
-  const SubmitButtonWidget({super.key});
+  // final VoidCallback onPressed;
+  const SubmitButtonWidget({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class SubmitButtonWidget extends StatelessWidget {
             backgroundColor: colors.primary,
             shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.circular(4))),
-        onPressed: () {},
+        onPressed: (){},
         child: Text(
           "CONTINUE",
           style: typography.h200.copyWith(color: colors.text),

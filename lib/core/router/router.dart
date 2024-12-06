@@ -1,4 +1,6 @@
 import 'package:define_todo_app/features/auth/view/pages/login_page.dart';
+import 'package:define_todo_app/features/auth/view/pages/signup_page.dart';
+import 'package:define_todo_app/features/home/view/pages/home_page.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
@@ -10,13 +12,17 @@ final router = GoRouter(
       builder: (context, state) => const LoginPage(),
     ),
     
+    GoRoute(
+      path: SignupPage.routePath,
+      builder: (context, state) => const SignupPage(),
+    ),
+    GoRoute(
+      path: HomePage.routePath,
+      builder: (context, state) => const HomePage(),
+    ),
     // GoRoute(
-    //   path: SignupPage.routePath,
-    //   builder: (context, state) => const SignupPage(),
-    // ),
-    // GoRoute(
-    //   path: NavigationPage.routePath,
-    //   builder: (context, state) => const NavigationPage(),
+    //   path: HomePage.routePath,
+    //   builder: (context, state) => const HomePage(),
     // ),
    
    
