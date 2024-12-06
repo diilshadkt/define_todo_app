@@ -93,13 +93,90 @@ class SettingsPage extends StatelessWidget {
                 SizedBox(
                   height: spaces.space_900,
                 ),
-                // icons part.
-                const Row(
-                  children: [
-                    Icon(Icons.notifications),
-                    
-                  ],
-                )
+                // icons notification.
+                InkWell(
+                  child: SizedBox(
+                    child: Row(
+                      children: [
+                        const Icon(Icons.notifications),
+                        SizedBox(
+                          width: MediaQuery.sizeOf(context).width / 15,
+                        ),
+                        Text(
+                          "Notification",
+                          style: typography.h300,
+                        )
+                      ],
+                    ),
+                  ),
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height / 10 / 4,
+                ),
+                // icons General.
+                InkWell(
+                  child: SizedBox(
+                    child: Row(
+                      children: [
+                        const Icon(Icons.settings),
+                        SizedBox(
+                          width: MediaQuery.sizeOf(context).width / 15,
+                        ),
+                        Text(
+                          "General",
+                          style: typography.h300,
+                        )
+                      ],
+                    ),
+                  ),
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height / 10 / 4,
+                ),
+                // icons Account.
+                InkWell(
+                  child: SizedBox(
+                    child: Row(
+                      children: [
+                        const Icon(Icons.person),
+                        SizedBox(
+                          width: MediaQuery.sizeOf(context).width / 15,
+                        ),
+                        Text(
+                          "Account",
+                          style: typography.h300,
+                        )
+                      ],
+                    ),
+                  ),
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height / 10 / 4,
+                ),
+                // icons About.
+                InkWell(
+                  child: SizedBox(
+                    child: Row(
+                      children: [
+                        const Icon(Icons.person),
+                        SizedBox(
+                          width: MediaQuery.sizeOf(context).width / 15,
+                        ),
+                        Text(
+                          "About",
+                          style: typography.h300,
+                        )
+                      ],
+                    ),
+                  ),
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height / 10 / 4,
+                ),
               ],
             ),
           ),
