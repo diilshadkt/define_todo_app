@@ -15,9 +15,7 @@ class SettingsPage extends StatelessWidget {
       backgroundColor: colors.text,
       appBar: AppBar(
         backgroundColor: colors.text,
-        foregroundColor: Theme.of(context).brightness == Brightness.dark
-            ? Colors.white
-            : Colors.black,
+        
         leading: IconButton(
           onPressed: () {},
           icon: Icon(Icons.arrow_back_rounded, size: spaces.space_100 * 3.6),
