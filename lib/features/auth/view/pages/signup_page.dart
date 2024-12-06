@@ -25,9 +25,12 @@ class SignupPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(
                     left: spaces.space_250, right: spaces.space_500),
-                child: Icon(
-                  Icons.arrow_back_rounded,
-                  size: spaces.space_100 * 3.6,
+                child: InkWell(
+                  child: Icon(
+                    Icons.arrow_back_rounded,
+                    size: spaces.space_100 * 3.6,
+                  ),
+                  onTap: (){},
                 ),
               ),
               Text(

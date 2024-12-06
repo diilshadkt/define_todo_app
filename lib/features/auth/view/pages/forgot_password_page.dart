@@ -4,6 +4,7 @@ import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.
 import 'package:flutter/material.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
+  static const routePath = "/forgot password";
   const ForgotPasswordPage({super.key});
 
   @override
@@ -23,9 +24,12 @@ class ForgotPasswordPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(
                     left: spaces.space_250, right: spaces.space_500),
-                child: Icon(
-                  Icons.arrow_back_rounded,
-                  size: spaces.space_100 * 3.6,
+                child: InkWell(
+                  child: Icon(
+                    Icons.arrow_back_rounded,
+                    size: spaces.space_100 * 3.6,
+                  ),
+                  onTap: (){},
                 ),
               ),
               Text(
