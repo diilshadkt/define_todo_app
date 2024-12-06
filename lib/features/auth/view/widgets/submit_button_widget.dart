@@ -2,8 +2,8 @@
 import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({super.key});
+class SubmitButtonWidget extends StatelessWidget {
+  const SubmitButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
