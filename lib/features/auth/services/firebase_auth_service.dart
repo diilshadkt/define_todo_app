@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-final class FirebaseAuthService {
+final class FirebaseAuthServices {
   Future<void> createAccount(
     String email,
     String password,

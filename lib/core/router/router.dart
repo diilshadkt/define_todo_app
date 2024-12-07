@@ -4,8 +4,8 @@ import 'package:define_todo_app/features/home/view/pages/home_page.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
-  // navigatorKey: App.navigatorKey,
-  // initialLocation: LandingPage.routePath,
+  navigatorKey: App.navigatorKey,
+  initialLocation: LoginPage.routePath,
   routes: [
     GoRoute(
       path: LoginPage.routePath,

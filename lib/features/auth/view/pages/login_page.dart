@@ -3,8 +3,9 @@ import 'package:define_todo_app/core/widgets/textfield_widget.dart';
 import 'package:define_todo_app/features/auth/view/widgets/forgot_password_button_widget.dart';
 import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends HookWidget{
   static const routePath = '/login';
   const LoginPage({super.key});
 

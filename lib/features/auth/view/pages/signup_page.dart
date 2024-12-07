@@ -3,8 +3,9 @@ import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:define_todo_app/core/widgets/textfield_widget.dart';
 import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class SignupPage extends StatelessWidget {
+class SignupPage extends HookWidget {
   static const routePath = '/signup';
   const SignupPage({super.key});
 
