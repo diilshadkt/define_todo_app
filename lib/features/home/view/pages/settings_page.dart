@@ -8,6 +8,7 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final colors = AppTheme.of(context).colors;
     final spaces = AppTheme.of(context).spaces;
     final typography = AppTheme.of(context).typography;
@@ -15,7 +16,6 @@ class SettingsPage extends StatelessWidget {
       backgroundColor: colors.text,
       appBar: AppBar(
         backgroundColor: colors.text,
-        
         leading: IconButton(
           onPressed: () {},
           icon: Icon(Icons.arrow_back_rounded, size: spaces.space_100 * 3.6),
@@ -93,6 +93,8 @@ class SettingsPage extends StatelessWidget {
                 const ListTileWidget(text: "General", icon: Icons.settings),
                 const ListTileWidget(text: "Account", icon: Icons.person),
                 const ListTileWidget(text: "About", icon: Icons.info),
+
+               
               ],
             ),
           ),

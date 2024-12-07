@@ -1,11 +1,19 @@
+import 'dart:developer';
+import 'dart:ui';
+
 import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:define_todo_app/features/home/view/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static const routePath = "/home";
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final colors = AppTheme.of(context).colors;
@@ -48,7 +56,7 @@ class HomePage extends StatelessWidget {
                   color: colors.text,
                   borderRadius: BorderRadius.circular(4),
                   boxShadow: [
-                    BoxShadow(color: colors.textSubtle, blurRadius: 20.0)
+                    BoxShadow(color: colors.textSubtle, blurRadius: 6.0)
                   ]),
               child: ListTile(
                 leading: const CircleAvatar(
@@ -65,10 +73,137 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              height: spaces.space_400,
+            ),
             //categories grid part.
+            SizedBox(
+              height: 500,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: spaces.space_200,
+                  mainAxisSpacing: spaces.space_200,
+                  mainAxisExtent: MediaQuery.sizeOf(context).height / 5.9,
+                ),
+                itemBuilder: (context, index) {
+                  if (index == 0) {
+                    return InkWell(
+                      onTap: () {
+                        _showAddTodoDialog();
+                      },
+                      child: Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              color: colors.text,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: colors.textSubtle, blurRadius: 4.0)
+                              ]),
+                          child: const Icon(Icons.add)),
+                    );
+                  } else {
+                    return Container(
+                      decoration: BoxDecoration(
+                          color: colors.text,
+                          borderRadius: BorderRadius.circular(4),
+                          boxShadow: [
+                            BoxShadow(color: colors.textSubtle, blurRadius: 4.0)
+                          ]),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: spaces.space_200, left: spaces.space_300),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.home),
+                            Text(
+                              "home",
+                              style: typography.h800,
+                            ),
+                            const Text("10 tasks"),
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.more_vert,
+                                  color: colors.textInverse,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                },
+                itemCount: 6,
+              ),
+            )
           ],
         ),
       ),
     );
   }
+
+  void _showAddTodoDialog() {
+    showDialog(
+        context: context,
+        barrierColor: Colors.black.withOpacity(0.5),
+        builder: (BuildContext context) {
+          final titleController = TextEditingController();
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0)),
+              content: Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(0)),
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      TextField(
+                        controller: titleController,
+                        decoration: const InputDecoration(
+                            hintText: 'Title', border: InputBorder.none),
+                      ),
+                      TextField(
+                        controller: titleController,
+                        decoration: const InputDecoration(
+                            hintText: 'Title', border: InputBorder.none),
+                      ),
+                      TextField(
+                        controller: titleController,
+                        decoration: const InputDecoration(
+                            hintText: '0 task', border: InputBorder.none),
+                      ),
+                    ],
+                  )),
+              // ,),
+              // title: const Text('Add Todo'),
+              // content: TextField(
+              //   controller: _titleController,
+              //  decoration: const InputDecoration(hintText: 'Enter Todo Title'),
+            ),
+          );
+        });
+  }
 }
+
+
+// Container(
+//                       height: 50,
+//                       width: 50,
+//                       decoration: BoxDecoration(
+//                           color: colors.text,
+//                           borderRadius: BorderRadius.circular(4),
+//                           boxShadow: [
+//                             BoxShadow(color: colors.textSubtle, blurRadius: 4.0)
+//                           ]),
+//                     );
