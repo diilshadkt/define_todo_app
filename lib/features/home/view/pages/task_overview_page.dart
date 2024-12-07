@@ -11,55 +11,106 @@ class TaskOverviewPage extends StatelessWidget {
     final spaces = AppTheme.of(context).spaces;
     final typography = AppTheme.of(context).typography;
     return Scaffold(
-      backgroundColor: colors.text,
-      appBar: AppBar(
         backgroundColor: colors.text,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HomePage()));
-          },
-          icon: Icon(Icons.arrow_back_rounded, size: spaces.space_100 * 3.6),
-        ),
-        title: Text(
-          "Spot",
-          style: typography.h600,
-        ),
-        centerTitle: true,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
-      ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: MediaQuery.sizeOf(context).height / 25,
-          ),
-          Text(
-            "Today",
-            style: typography.code,
-          ),
-          // List view part.
-          ListView.builder(
-            itemBuilder: (context, index) {
-              return  ListTile(
-                leading: Container(
-                  width: MediaQuery.sizeOf(context).width/22,
-                  height: MediaQuery.sizeOf(context).height/34,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.amber
-                    
-                  ),
-                   ,
-
-                ),
-              );
+        appBar: AppBar(
+          backgroundColor: colors.text,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
             },
-            itemCount: 5,
-          )
-        ],
-      ),
-    );
+            icon: Icon(Icons.arrow_back_rounded, size: spaces.space_100 * 3.6),
+          ),
+          title: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "Spot",
+              style: typography.h600,
+            ),
+          ),
+          centerTitle: true,
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+          ],
+        ),
+        body: Padding(
+          padding: EdgeInsets.only(left: spaces.space_200),
+          child: Column(
+            children: [
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height / 25,
+              ),
+
+              Padding(
+                padding: EdgeInsets.only(right: spaces.space_400 * 9.7),
+                child: Text(
+                  "Today",
+                  style: typography.h200.copyWith(color: colors.textSubtle),
+                ),
+              ),
+
+              // List view part.
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 15,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      leading: CircleAvatar(
+                        radius: spaces.space_150,
+                        backgroundColor: const Color.fromARGB(255, 57, 210, 90),
+                        child: CircleAvatar(
+                          radius: spaces.space_125,
+                          backgroundColor: colors.text,
+                        ),
+                      ),
+                      title: Text(
+                        "10 min Running",
+                        style: typography.h300,
+                      ),
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          child: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: colors.secondary,
+            ),
+            constraints: const BoxConstraints.expand(),
+            child: IconButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        shape: const RoundedRectangleBorder(),
+                        content: SizedBox(
+                          height: 17,
+                          child: TextField(
+                            cursorHeight: 13,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Type your task...",
+                                hintStyle: typography.h200
+                                    .copyWith(color: colors.textSubtle)),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                icon: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                )),
+          ),
+        ));
   }
 }
-
-
