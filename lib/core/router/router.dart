@@ -1,6 +1,7 @@
 import 'package:define_todo_app/features/auth/view/pages/login_page.dart';
 import 'package:define_todo_app/features/auth/view/pages/signup_page.dart';
 import 'package:define_todo_app/features/home/view/pages/home_page.dart';
+import 'package:define_todo_app/main.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(

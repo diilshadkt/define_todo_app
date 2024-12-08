@@ -29,7 +29,7 @@ class ForgotPasswordPage extends StatelessWidget {
                     Icons.arrow_back_rounded,
                     size: spaces.space_100 * 3.6,
                   ),
-                  onTap: (){},
+                  onTap: () {},
                 ),
               ),
               Text(
@@ -54,7 +54,13 @@ class ForgotPasswordPage extends StatelessWidget {
                 SizedBox(
                   height: spaces.space_200 * 2,
                 ),
-                const SubmitButtonWidget(),
+                SubmitButtonWidget(
+                  onPressed: () {},
+                  child: Text(
+                    "CONTINUE",
+                    style: typography.h200.copyWith(color: colors.text),
+                  ),
+                ),
                 SizedBox(
                   height: spaces.space_400,
                 ),

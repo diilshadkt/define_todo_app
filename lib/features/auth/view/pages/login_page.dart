@@ -1,16 +1,33 @@
+import 'package:define_todo_app/core/router/router.dart';
 import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:define_todo_app/core/widgets/textfield_widget.dart';
+import 'package:define_todo_app/features/auth/controller/auth_controller.dart';
+import 'package:define_todo_app/features/auth/view/pages/signup_page.dart';
 import 'package:define_todo_app/features/auth/view/widgets/forgot_password_button_widget.dart';
 import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.dart';
+import 'package:define_todo_app/features/home/view/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 
-class LoginPage extends HookWidget{
+class LoginPage extends HookWidget {
   static const routePath = '/login';
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final loginFormKey = useMemoized(() => GlobalKey<FormState>());
+    final forgotFormKey = useMemoized(() => GlobalKey<FormState>());
+
+    final emailController = useTextEditingController();
+    final passwordController = useTextEditingController();
+    final forgotEmailController = useTextEditingController();
+    final animationController = useAnimationController(
+      duration: const Duration(milliseconds: 500),
+    );
+
+    final isLoadingState = useState(false);
+
     final colors = AppTheme.of(context).colors;
     final spaces = AppTheme.of(context).spaces;
     final typography = AppTheme.of(context).typography;
@@ -35,13 +52,18 @@ class LoginPage extends HookWidget{
                   SizedBox(
                     height: spaces.space_150,
                   ),
-                  const TextfieldWidget(
+                  TextfieldWidget(
+                    controller: emailController,
+                    validator: AuthController().validateEmail,
                     hintText: "Email",
                   ),
                   SizedBox(
                     height: spaces.space_250,
                   ),
-                  const TextfieldWidget(hintText: "Password"),
+                  TextfieldWidget(
+                      controller: passwordController,
+                      validator: AuthController().validatePassword,
+                      hintText: "Password"),
                   SizedBox(
                     height: spaces.space_50,
                   ),
@@ -54,7 +76,22 @@ class LoginPage extends HookWidget{
                     height: spaces.space_200 * 2,
                   ),
                   // submit button part.
-                  const SubmitButtonWidget(),
+                  SubmitButtonWidget(
+                    onPressed: () async {
+                      // context.go(HomePage.routePath);
+                      isLoadingState.value = true;
+
+                      if (loginFormKey.currentState!.validate()) {
+                        await AuthController().login(
+                            emailController.text, passwordController.text);
+                      }
+                      isLoadingState.value = false;
+                    },
+                    child: Text(
+                             "CONTINUE",
+          style: typography.h200.copyWith(color: colors.text),
+),
+                  ),
                   SizedBox(
                     height: spaces.space_400,
                   ),
@@ -77,7 +114,9 @@ class LoginPage extends HookWidget{
                               color: colors.secondary,
                               decoration: TextDecoration.underline),
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          context.go(SignupPage.routePath);
+                        },
                       )
                     ],
                   ),

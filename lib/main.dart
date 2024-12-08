@@ -12,24 +12,23 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-void main() async{
- WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   DependencyInjection.registerDependencies();
 
-await Firebase.initializeApp(
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const ProviderScope(child: App()));
 }
 
-class App extends HookConsumerWidget{
-   static final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
-    static final navigatorKey = GlobalKey<NavigatorState>();
+class App extends HookConsumerWidget {
+  static final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+  static final navigatorKey = GlobalKey<NavigatorState>();
   const App({super.key});
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
-
- useEffect(() {
+  Widget build(BuildContext context, WidgetRef ref) {
+    useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         FirebaseAuth.instance.authStateChanges().listen((user) {
           if (user != null && user.emailVerified) {
@@ -44,14 +43,13 @@ class App extends HookConsumerWidget{
     }, []);
 
     return MaterialApp.router(
-       scaffoldMessengerKey: scaffoldMessengerKey,
-       routerConfig: router,
+      //  scaffoldMessengerKey: scaffoldMessengerKey,
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'Define Todo App',
       theme: ref.watch(themeProvider),
       // themeMode: ThemeMode.system,
       // home: const TaskOverviewPage(),
-      
     );
   }
 }
