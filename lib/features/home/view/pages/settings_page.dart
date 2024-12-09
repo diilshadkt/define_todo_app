@@ -1,6 +1,9 @@
+import 'package:define_todo_app/core/router/router.dart';
 import 'package:define_todo_app/core/theme/app_theme.dart';
+import 'package:define_todo_app/features/home/view/pages/home_page.dart';
 import 'package:define_todo_app/features/home/view/widgets/list_tile_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsPage extends StatelessWidget {
   static const routePath = "/settings";
@@ -8,7 +11,6 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final colors = AppTheme.of(context).colors;
     final spaces = AppTheme.of(context).spaces;
     final typography = AppTheme.of(context).typography;
@@ -17,7 +19,9 @@ class SettingsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: colors.text,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.go(HomePage.routePath);
+          },
           icon: Icon(Icons.arrow_back_rounded, size: spaces.space_100 * 3.6),
         ),
         title: Text("Settings", style: typography.h600),
@@ -93,8 +97,6 @@ class SettingsPage extends StatelessWidget {
                 const ListTileWidget(text: "General", icon: Icons.settings),
                 const ListTileWidget(text: "Account", icon: Icons.person),
                 const ListTileWidget(text: "About", icon: Icons.info),
-
-               
               ],
             ),
           ),

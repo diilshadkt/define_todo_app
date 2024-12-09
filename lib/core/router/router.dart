@@ -2,7 +2,10 @@ import 'package:define_todo_app/features/auth/view/pages/forgot_password_page.da
 import 'package:define_todo_app/features/auth/view/pages/login_page.dart';
 import 'package:define_todo_app/features/auth/view/pages/signup_page.dart';
 import 'package:define_todo_app/features/home/view/pages/home_page.dart';
+import 'package:define_todo_app/features/home/view/pages/settings_page.dart';
+import 'package:define_todo_app/features/overview_page/view/task_overview_page.dart';
 import 'package:define_todo_app/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
@@ -17,13 +20,22 @@ final router = GoRouter(
       path: SignupPage.routePath,
       builder: (context, state) => const SignupPage(),
     ),
-    GoRoute(
-      path: HomePage.routePath,
-      builder: (context, state) => const HomePage(),
-    ),
-    GoRoute(
+     GoRoute(
       path: ForgotPasswordPage.routePath,
       builder: (context, state) => const ForgotPasswordPage(),
     ),
+    GoRoute(
+      path: HomePage.routePath,
+      builder: (context, state) =>  HomePage(userId: FirebaseAuth.instance.currentUser!.uid),
+    ),
+     GoRoute(
+      path: SettingsPage.routePath,
+      builder: (context, state) => const SettingsPage(),
+    ),
+    // GoRoute(
+    //   path: TaskOverviewPage.routePath,
+    //   builder: (context, state) =>  TaskOverviewPage(userId: userI, todoId: todoId, taskName: taskName),
+    // ),
+   
   ],
 );

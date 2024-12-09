@@ -37,4 +37,13 @@ class TodoServices {
         .snapshots()
         .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
   }
+
+  // Future<void> deleteTask(String id) async {
+  //   await _firestore
+  //       .collection('users')
+  //       .doc(id)
+  //       .collection('todos')
+  //       .doc()
+  //       .delete();
+  // }
 }
