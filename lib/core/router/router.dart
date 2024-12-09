@@ -1,3 +1,4 @@
+import 'package:define_todo_app/features/auth/view/pages/forgot_password_page.dart';
 import 'package:define_todo_app/features/auth/view/pages/login_page.dart';
 import 'package:define_todo_app/features/auth/view/pages/signup_page.dart';
 import 'package:define_todo_app/features/home/view/pages/home_page.dart';
@@ -12,7 +13,6 @@ final router = GoRouter(
       path: LoginPage.routePath,
       builder: (context, state) => const LoginPage(),
     ),
-    
     GoRoute(
       path: SignupPage.routePath,
       builder: (context, state) => const SignupPage(),
@@ -21,11 +21,9 @@ final router = GoRouter(
       path: HomePage.routePath,
       builder: (context, state) => const HomePage(),
     ),
-    // GoRoute(
-    //   path: HomePage.routePath,
-    //   builder: (context, state) => const HomePage(),
-    // ),
-   
-   
+    GoRoute(
+      path: ForgotPasswordPage.routePath,
+      builder: (context, state) => const ForgotPasswordPage(),
+    ),
   ],
 );

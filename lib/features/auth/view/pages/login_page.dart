@@ -70,7 +70,9 @@ class LoginPage extends HookWidget {
                     ),
                     const Row(
                       children: [
-                        ForgotPasswordButtonWidget(),
+                        ForgotPasswordButtonWidget(
+                          
+                        ),
                       ],
                     ),
                     SizedBox(

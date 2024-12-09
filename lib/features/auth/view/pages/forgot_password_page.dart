@@ -1,3 +1,4 @@
+import 'package:define_todo_app/core/router/router.dart';
 import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:define_todo_app/core/widgets/textfield_widget.dart';
 import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.dart';
@@ -55,7 +56,9 @@ class ForgotPasswordPage extends StatelessWidget {
                   height: spaces.space_200 * 2,
                 ),
                 SubmitButtonWidget(
-                  onPressed: () {},
+                  onPressed: () {
+                  
+                  },
                 ),
                 SizedBox(
                   height: spaces.space_400,
