@@ -45,7 +45,9 @@ class SignupPage extends HookWidget {
                         Icons.arrow_back_rounded,
                         size: spaces.space_100 * 3.6,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        context.go(LoginPage.routePath);
+                      },
                     ),
                   ),
                   Text(
@@ -98,7 +100,6 @@ class SignupPage extends HookWidget {
                         }
                         // isLoadingState.value = false;
                       },
-                      
                     ),
                     SizedBox(
                       height: spaces.space_400,

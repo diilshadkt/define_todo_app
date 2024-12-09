@@ -17,7 +17,6 @@ class LoginPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final loginFormKey = useMemoized(() => GlobalKey<FormState>());
-    final forgotFormKey = useMemoized(() => GlobalKey<FormState>());
 
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
