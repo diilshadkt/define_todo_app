@@ -43,7 +43,7 @@ class App extends HookConsumerWidget {
     }, []);
 
     return MaterialApp.router(
-      //  scaffoldMessengerKey: scaffoldMessengerKey,
+       scaffoldMessengerKey: scaffoldMessengerKey,
       routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'Define Todo App',

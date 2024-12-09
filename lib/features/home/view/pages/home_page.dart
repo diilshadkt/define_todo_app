@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 import 'dart:ui';
 
 import 'package:define_todo_app/core/theme/app_theme.dart';
@@ -42,110 +42,112 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: spaces.space_250),
-        child: Column(
-          children: [
-            //users review part.
-            SizedBox(
-              
-              height: MediaQuery.sizeOf(context).height / 30,
-            ),
-            Container(
-              height: MediaQuery.sizeOf(context).height / 9,
-              decoration: BoxDecoration(
-                  color: colors.text,
-                  borderRadius: BorderRadius.circular(4),
-                  boxShadow: [
-                    BoxShadow(color: colors.textSubtle, blurRadius: 6.0)
-                  ]),
-              child: ListTile(
-                leading: const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://pics.craiyon.com/2023-11-26/oMNPpACzTtO5OVERUZwh3Q.webp"),
-                ),
-                title: Text(
-                  "\"The memories is a shield and life helper.\"",
-                  style: typography.h300,
-                ),
-                subtitle: Text(
-                  "Tamim-Al-Barghouti",
-                  style: typography.code,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: spaces.space_250),
+          child: Column(
+            children: [
+              //users review part.
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height / 30,
+              ),
+              Container(
+                height: MediaQuery.sizeOf(context).height / 9,
+                decoration: BoxDecoration(
+                    color: colors.text,
+                    borderRadius: BorderRadius.circular(4),
+                    boxShadow: [
+                      BoxShadow(color: colors.textSubtle, blurRadius: 6.0)
+                    ]),
+                child: ListTile(
+                  leading: const CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://pics.craiyon.com/2023-11-26/oMNPpACzTtO5OVERUZwh3Q.webp"),
+                  ),
+                  title: Text(
+                    "\"The memories is a shield and life helper.\"",
+                    style: typography.h300,
+                  ),
+                  subtitle: Text(
+                    "Tamim-Al-Barghouti",
+                    style: typography.code,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: spaces.space_400,
-            ),
-            //categories grid part.
-            SizedBox(
-              height: 500,
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: spaces.space_200,
-                  mainAxisSpacing: spaces.space_200,
-                  mainAxisExtent: MediaQuery.sizeOf(context).height / 5.9,
-                ),
-                itemBuilder: (context, index) {
-                  if (index == 0) {
-                    return InkWell(
-                      onTap: () {
-                        _showAddTodoDialog();
-                      },
-                      child: Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                              color: colors.text,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: colors.textSubtle, blurRadius: 4.0)
-                              ]),
-                          child: const Icon(Icons.add)),
-                    );
-                  } else {
-                    return Container(
-                      decoration: BoxDecoration(
-                          color: colors.text,
-                          borderRadius: BorderRadius.circular(4),
-                          boxShadow: [
-                            BoxShadow(color: colors.textSubtle, blurRadius: 4.0)
-                          ]),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: spaces.space_200, left: spaces.space_300),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(Icons.home),
-                            Text(
-                              "home",
-                              style: typography.h800,
-                            ),
-                            const Text("10 tasks"),
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.more_vert,
-                                  color: colors.textInverse,
-                                ),
+              SizedBox(
+                height: spaces.space_400,
+              ),
+              //categories grid part.
+              SizedBox(
+                height: 500,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: spaces.space_200,
+                    mainAxisSpacing: spaces.space_200,
+                    mainAxisExtent: MediaQuery.sizeOf(context).height / 5.9,
+                  ),
+                  itemBuilder: (context, index) {
+                    if (index == 0) {
+                      return InkWell(
+                        onTap: () {
+                          _showAddTodoDialog();
+                        },
+                        child: Container(
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                                color: colors.text,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: colors.textSubtle, blurRadius: 4.0)
+                                ]),
+                            child: const Icon(Icons.add)),
+                      );
+                    } else {
+                      return Container(
+                        decoration: BoxDecoration(
+                            color: colors.text,
+                            borderRadius: BorderRadius.circular(4),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: colors.textSubtle, blurRadius: 4.0)
+                            ]),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: spaces.space_200, left: spaces.space_300),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.home),
+                              Text(
+                                "home",
+                                style: typography.h800,
                               ),
-                            )
-                          ],
+                              const Text("10 tasks"),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.more_vert,
+                                    color: colors.textInverse,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  }
-                },
-                itemCount: 6,
-              ),
-            )
-          ],
+                      );
+                    }
+                  },
+                  itemCount: 6,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

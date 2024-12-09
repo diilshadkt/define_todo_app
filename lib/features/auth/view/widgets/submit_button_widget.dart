@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 class SubmitButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
-  final Widget child;
-  const SubmitButtonWidget({super.key, required this.onPressed,required this.child});
+  const SubmitButtonWidget({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +19,11 @@ class SubmitButtonWidget extends StatelessWidget {
             shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.circular(4))),
         onPressed: onPressed,
-        
-        child: child,
+        child: Text(
+          "CONTINUE",
+          style: typography.h200.copyWith(color: colors.text),
+        ),
       ),
     );
   }
 }
-

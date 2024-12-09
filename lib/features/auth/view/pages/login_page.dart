@@ -26,104 +26,100 @@ class LoginPage extends HookWidget {
       duration: const Duration(milliseconds: 500),
     );
 
-    final isLoadingState = useState(false);
 
     final colors = AppTheme.of(context).colors;
     final spaces = AppTheme.of(context).spaces;
     final typography = AppTheme.of(context).typography;
-    return Scaffold(
-      backgroundColor: colors.text,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: spaces.space_300 * 5,
-            ),
-            Center(
-              child: Image(
-                image: const AssetImage("assets/images/img_app_logo.png"),
-                height: spaces.space_300 * 6,
+    return Form(
+      key: loginFormKey,
+      child: Scaffold(
+        backgroundColor: colors.text,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: spaces.space_300 * 5,
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: spaces.space_600),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: spaces.space_150,
-                  ),
-                  TextfieldWidget(
-                    controller: emailController,
-                    validator: AuthController().validateEmail,
-                    hintText: "Email",
-                  ),
-                  SizedBox(
-                    height: spaces.space_250,
-                  ),
-                  TextfieldWidget(
-                      controller: passwordController,
-                      validator: AuthController().validatePassword,
-                      hintText: "Password"),
-                  SizedBox(
-                    height: spaces.space_50,
-                  ),
-                  const Row(
-                    children: [
-                      ForgotPasswordButtonWidget(),
-                    ],
-                  ),
-                  SizedBox(
-                    height: spaces.space_200 * 2,
-                  ),
-                  // submit button part.
-                  SubmitButtonWidget(
-                    onPressed: () async {
-                      // context.go(HomePage.routePath);
-                      isLoadingState.value = true;
+              Center(
+                child: Image(
+                  image: const AssetImage("assets/images/img_app_logo.png"),
+                  height: spaces.space_300 * 6,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: spaces.space_600),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: spaces.space_150,
+                    ),
+                    TextfieldWidget(
+                      controller: emailController,
+                      validator: AuthController().validateEmail,
+                      hintText: "Email",
+                    ),
+                    SizedBox(
+                      height: spaces.space_250,
+                    ),
+                    TextfieldWidget(
+                        controller: passwordController,
+                        validator: AuthController().validatePassword,
+                        hintText: "Password"),
+                    SizedBox(
+                      height: spaces.space_50,
+                    ),
+                    const Row(
+                      children: [
+                        ForgotPasswordButtonWidget(),
+                      ],
+                    ),
+                    SizedBox(
+                      height: spaces.space_200 * 2,
+                    ),
+                    // submit button part.
+                    SubmitButtonWidget(
+                      onPressed: () async {
 
-                      if (loginFormKey.currentState!.validate()) {
-                        await AuthController().login(
-                            emailController.text, passwordController.text);
-                      }
-                      isLoadingState.value = false;
-                    },
-                    child: Text(
-                             "CONTINUE",
-          style: typography.h200.copyWith(color: colors.text),
-),
-                  ),
-                  SizedBox(
-                    height: spaces.space_400,
-                  ),
-                  // don't have an account part.
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Don't have an account?",
-                        style:
-                            typography.code.copyWith(color: colors.secondary),
-                      ),
-                      SizedBox(
-                        width: spaces.space_25,
-                      ),
-                      InkWell(
-                        child: Text(
-                          "Register",
-                          style: typography.h200.copyWith(
-                              color: colors.secondary,
-                              decoration: TextDecoration.underline),
+                        if (loginFormKey.currentState!.validate()) {
+                          await AuthController().login(
+                              emailController.text, passwordController.text);
+                        }
+                      },
+                      
+                    ),
+                    SizedBox(
+                      height: spaces.space_400,
+                    ),
+                    // don't have an account part.
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account?",
+                          style:
+                              typography.code.copyWith(color: colors.secondary),
                         ),
-                        onTap: () {
-                          context.go(SignupPage.routePath);
-                        },
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
+                        SizedBox(
+                          width: spaces.space_25,
+                        ),
+                        InkWell(
+                          child: Text(
+                            "Register",
+                            style: typography.h200.copyWith(
+                                color: colors.secondary,
+                                decoration: TextDecoration.underline),
+                          ),
+                          onTap: () {
+                            context.go(SignupPage.routePath);
+                          },
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

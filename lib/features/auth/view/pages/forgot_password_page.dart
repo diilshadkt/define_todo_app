@@ -56,10 +56,6 @@ class ForgotPasswordPage extends StatelessWidget {
                 ),
                 SubmitButtonWidget(
                   onPressed: () {},
-                  child: Text(
-                    "CONTINUE",
-                    style: typography.h200.copyWith(color: colors.text),
-                  ),
                 ),
                 SizedBox(
                   height: spaces.space_400,
