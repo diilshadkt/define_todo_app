@@ -1,4 +1,3 @@
-
 import 'package:define_todo_app/core/theme/color_palette.dart';
 import 'package:define_todo_app/core/theme/extensions/color_extension.dart';
 import 'package:define_todo_app/core/theme/extensions/space_extension.dart';
@@ -13,8 +12,8 @@ final _darkTheme = ThemeData(
   extensions: [
     AppColorExtension(
       primary: AppColorPalettes.blue400,
-      secondary: AppColorPalettes.grey1000,
-      text: AppColorPalettes.white500,
+      secondary: const Color.fromARGB(255, 250, 250, 250),
+      text: const Color.fromARGB(255, 11, 4, 4),
       textInverse: AppColorPalettes.blue900,
       textSubtle: AppColorPalettes.gray300,
       textSubtlest: AppColorPalettes.grey400,

@@ -154,7 +154,7 @@ class HomePage extends StatelessWidget {
 
                         return InkWell(
                           onTap: () {
-                            context.go(TaskOverviewPage.routePath);
+                            context.go(HomePage.routePath);
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -172,7 +172,7 @@ class HomePage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Icon(Icons.home),
+                                  const Icon(Icons.task),
                                   Text(
                                     todo.title,
                                     style: typography.h800,

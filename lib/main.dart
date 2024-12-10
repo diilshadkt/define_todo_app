@@ -2,7 +2,6 @@ import 'package:define_todo_app/core/dependencies/dependencies.dart';
 import 'package:define_todo_app/core/router/router.dart';
 import 'package:define_todo_app/core/theme/dark_theme.dart';
 import 'package:define_todo_app/core/theme/light_theme.dart';
-import 'package:define_todo_app/core/theme/theme_provider.dart';
 import 'package:define_todo_app/features/auth/view/pages/login_page.dart';
 import 'package:define_todo_app/features/home/view/pages/home_page.dart';
 import 'package:define_todo_app/firebase_options.dart';
@@ -49,9 +48,9 @@ class App extends HookConsumerWidget {
       routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'Define Todo App',
-      // darkTheme: ref.watch(darkThemeProvider),
+      darkTheme: ref.watch(darkThemeProvider),
       themeMode: ThemeMode.system,
-      theme: ref.watch(themeProvider),
+      theme: ref.watch(lightThemeProvider),
     );
   }
 }
