@@ -1,11 +1,10 @@
-import 'package:define_todo_app/core/router/router.dart';
+
 import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:define_todo_app/core/widgets/textfield_widget.dart';
 import 'package:define_todo_app/features/auth/controller/auth_controller.dart';
 import 'package:define_todo_app/features/auth/view/pages/signup_page.dart';
 import 'package:define_todo_app/features/auth/view/widgets/forgot_password_button_widget.dart';
 import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.dart';
-import 'package:define_todo_app/features/home/view/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -20,10 +19,7 @@ class LoginPage extends HookWidget {
 
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
-    final forgotEmailController = useTextEditingController();
-    final animationController = useAnimationController(
-      duration: const Duration(milliseconds: 500),
-    );
+    
 
 
     final colors = AppTheme.of(context).colors;

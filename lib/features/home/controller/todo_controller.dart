@@ -12,6 +12,7 @@ class TodoController extends GetxController {
   void clearFields() {
     titleController.clear();
     taskController.clear();
+    super.onClose();
   }
 
   var todos = <TodoModel>[].obs;

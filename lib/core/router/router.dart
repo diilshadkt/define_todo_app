@@ -20,22 +20,26 @@ final router = GoRouter(
       path: SignupPage.routePath,
       builder: (context, state) => const SignupPage(),
     ),
-     GoRoute(
+    GoRoute(
       path: ForgotPasswordPage.routePath,
       builder: (context, state) => const ForgotPasswordPage(),
     ),
     GoRoute(
       path: HomePage.routePath,
-      builder: (context, state) =>  HomePage(userId: FirebaseAuth.instance.currentUser!.uid),
+      builder: (context, state) =>
+          HomePage(userId: FirebaseAuth.instance.currentUser!.uid),
     ),
-     GoRoute(
+    GoRoute(
       path: SettingsPage.routePath,
       builder: (context, state) => const SettingsPage(),
     ),
     // GoRoute(
     //   path: TaskOverviewPage.routePath,
-    //   builder: (context, state) =>  TaskOverviewPage(userId: userI, todoId: todoId, taskName: taskName),
+    //   builder: (context, state) {
+    //     final (String, String) extra = state.extra as (String, String);
+
+    //     return TaskOverviewPage(userId: extra.$1, todoId: extra.$2);
+    //   },
     // ),
-   
   ],
 );

@@ -1,19 +1,14 @@
 import 'dart:ui';
-
 import 'package:define_todo_app/core/theme/app_theme.dart';
-import 'package:define_todo_app/features/auth/controller/auth_controller.dart';
 import 'package:define_todo_app/features/home/controller/todo_controller.dart';
 import 'package:define_todo_app/features/home/view/pages/settings_page.dart';
-import 'package:define_todo_app/features/overview_page/controller/overview_controller.dart';
 import 'package:define_todo_app/features/overview_page/view/task_overview_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
-  // final authController = Get.find<AuthController>();
-
   final TodoController todoController = Get.put(TodoController());
-  // final OverviewController _detailController = Get.put(OverviewController());
   final String userId;
 
   static const routePath = "/home";
@@ -33,7 +28,6 @@ class HomePage extends StatelessWidget {
           context: context,
           barrierColor: Colors.black.withOpacity(0.5),
           builder: (BuildContext context) {
-            // final titleController = TextEditingController();
             return BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
               child: AlertDialog(
@@ -46,13 +40,8 @@ class HomePage extends StatelessWidget {
                     width: double.infinity,
                     child: Column(
                       children: [
-                        // TextField(
-                        //   controller: TodoController().titleController,
-                        //   decoration: const InputDecoration(
-                        //       hintText: 'emoji', border: InputBorder.none),
-                        // ),
                         TextField(
-                          controller: TodoController().titleController,
+                          controller: todoController.titleController,
                           decoration: const InputDecoration(
                               hintText: 'Title', border: InputBorder.none),
                           onSubmitted: (_) {
@@ -61,15 +50,9 @@ class HomePage extends StatelessWidget {
                             todoController.addTodo(userId, title, subtitle);
                             todoController.titleController.clear();
                             todoController.taskController.clear();
-                            Get.back();
+                            context.pop();
                           },
                         ),
-                        // TextField(
-                        //   controller: TodoController().taskController,
-                        //   decoration: const InputDecoration(
-                        //       hintText: '0 task', border: InputBorder.none),
-
-                        // ),
                       ],
                     )),
               ),
@@ -137,7 +120,8 @@ class HomePage extends StatelessWidget {
               ),
               //categories grid part.
               Obx(() {
-                return Expanded(
+                return SizedBox(
+                  height: MediaQuery.sizeOf(context).height / 1.4,
                   child: GridView.builder(
                     itemCount: todos.length + 1,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -170,12 +154,7 @@ class HomePage extends StatelessWidget {
 
                         return InkWell(
                           onTap: () {
-                            final todoId = todo.id;
-                            Get.to(const TaskOverviewPage(
-                                // userId: userId,
-                                // todoId: todoId,
-                                // taskName: todo.title,
-                                ));
+                            context.go(TaskOverviewPage.routePath);
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -195,10 +174,9 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   const Icon(Icons.home),
                                   Text(
-                                    "home",
+                                    todo.title,
                                     style: typography.h800,
                                   ),
-                                  const Text("10 tasks"),
                                   Align(
                                     alignment: Alignment.bottomRight,
                                     child: IconButton(

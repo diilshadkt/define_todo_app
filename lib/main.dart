@@ -1,5 +1,7 @@
 import 'package:define_todo_app/core/dependencies/dependencies.dart';
 import 'package:define_todo_app/core/router/router.dart';
+import 'package:define_todo_app/core/theme/dark_theme.dart';
+import 'package:define_todo_app/core/theme/light_theme.dart';
 import 'package:define_todo_app/core/theme/theme_provider.dart';
 import 'package:define_todo_app/features/auth/view/pages/login_page.dart';
 import 'package:define_todo_app/features/home/view/pages/home_page.dart';
@@ -43,13 +45,13 @@ class App extends HookConsumerWidget {
     }, []);
 
     return MaterialApp.router(
-       scaffoldMessengerKey: scaffoldMessengerKey,
+      scaffoldMessengerKey: scaffoldMessengerKey,
       routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'Define Todo App',
+      // darkTheme: ref.watch(darkThemeProvider),
+      themeMode: ThemeMode.system,
       theme: ref.watch(themeProvider),
-      // themeMode: ThemeMode.system,
-      // home: const TaskOverviewPage(),
     );
   }
 }

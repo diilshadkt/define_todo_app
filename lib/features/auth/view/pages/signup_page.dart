@@ -1,4 +1,4 @@
-import 'package:define_todo_app/core/router/router.dart';
+
 import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:define_todo_app/core/widgets/textfield_widget.dart';
 import 'package:define_todo_app/features/auth/controller/auth_controller.dart';
@@ -23,8 +23,7 @@ class SignupPage extends HookWidget {
     final spaces = AppTheme.of(context).spaces;
     final typography = AppTheme.of(context).typography;
 
-    /// A state that indicate if the signup process is in progress
-    // final isLoadingState = useState(false);
+
     return Form(
       key: formKey,
       child: Scaffold(
@@ -90,7 +89,6 @@ class SignupPage extends HookWidget {
                     ),
                     SubmitButtonWidget(
                       onPressed: () async {
-                        // isLoadingState.value = true;
 
                         if (formKey.currentState!.validate()) {
                           await AuthController().createAccount(
@@ -98,7 +96,7 @@ class SignupPage extends HookWidget {
                             passwordController.text,
                           );
                         }
-                        // isLoadingState.value = false;
+                       
                       },
                     ),
                     SizedBox(

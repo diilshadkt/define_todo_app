@@ -1,5 +1,6 @@
-import 'package:define_todo_app/core/router/router.dart';
+
 import 'package:define_todo_app/core/theme/app_theme.dart';
+import 'package:define_todo_app/features/auth/controller/auth_controller.dart';
 import 'package:define_todo_app/features/home/view/pages/home_page.dart';
 import 'package:define_todo_app/features/home/view/widgets/list_tile_widget.dart';
 import 'package:flutter/material.dart';
@@ -97,6 +98,15 @@ class SettingsPage extends StatelessWidget {
                 const ListTileWidget(text: "General", icon: Icons.settings),
                 const ListTileWidget(text: "Account", icon: Icons.person),
                 const ListTileWidget(text: "About", icon: Icons.info),
+                // Logout button
+                InkWell(
+                    child: const ListTileWidget(
+                      text: "Logout",
+                      icon: Icons.logout_rounded,
+                    ),
+                    onTap: () {
+                      AuthController().logout();
+                    }),
               ],
             ),
           ),
