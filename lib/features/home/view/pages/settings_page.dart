@@ -1,6 +1,6 @@
 
 import 'package:define_todo_app/core/theme/app_theme.dart';
-import 'package:define_todo_app/features/auth/controller/auth_controller.dart';
+import 'package:define_todo_app/features/auth/controller/auth_service.dart';
 import 'package:define_todo_app/features/home/view/pages/home_page.dart';
 import 'package:define_todo_app/features/home/view/widgets/list_tile_widget.dart';
 import 'package:flutter/material.dart';

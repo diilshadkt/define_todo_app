@@ -1,7 +1,8 @@
 
 import 'package:define_todo_app/core/theme/app_theme.dart';
+import 'package:define_todo_app/core/utils/snackbar_utils.dart';
 import 'package:define_todo_app/core/widgets/textfield_widget.dart';
-import 'package:define_todo_app/features/auth/controller/auth_controller.dart';
+import 'package:define_todo_app/features/auth/controller/auth_service.dart';
 import 'package:define_todo_app/features/auth/view/pages/login_page.dart';
 import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class SignupPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final formKey = useMemoized(() => GlobalKey<FormState>());
+    final nameController = useTextEditingController();
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
     final confirmController = useTextEditingController();
@@ -59,7 +61,8 @@ class SignupPage extends HookWidget {
                 padding: EdgeInsets.symmetric(horizontal: spaces.space_600),
                 child: Column(
                   children: [
-                    const TextfieldWidget(
+                     TextfieldWidget(
+                      controller: nameController,
                       hintText: "Full Name",
                     ),
                     SizedBox(
@@ -67,35 +70,48 @@ class SignupPage extends HookWidget {
                     ),
                     TextfieldWidget(
                         controller: emailController,
-                        validator: AuthController().validateEmail,
+                        // validator: AuthController().validateEmail,
                         hintText: "Email"),
                     SizedBox(
                       height: spaces.space_250,
                     ),
                     TextfieldWidget(
                         controller: passwordController,
-                        validator: AuthController().validatePassword,
+                        // validator: AuthController().validatePassword,
                         hintText: "Password"),
                     SizedBox(
                       height: spaces.space_250,
                     ),
                     TextfieldWidget(
                         controller: confirmController,
-                        validator: (value) => AuthController()
-                            .validateConfirm(passwordController.text, value),
+                        // validator: (value) => AuthController()
+                        //     .validateConfirm(passwordController.text, value),
                         hintText: "Confirm Password"),
                     SizedBox(
                       height: spaces.space_200 * 2,
                     ),
                     SubmitButtonWidget(
                       onPressed: () async {
-
-                        if (formKey.currentState!.validate()) {
-                          await AuthController().createAccount(
-                            emailController.text,
-                            passwordController.text,
-                          );
+                        try{
+                          if(nameController.text.isEmpty ||
+                          emailController.text.isEmpty ||
+                          passwordController.text.isEmpty ||
+                          confirmController.text.isEmpty
+                          ){
+                            SnackbarUtils.showMessage("Please fill all the fields");
+                          }else{
+                            if(passwordController.text != confirmController.text){
+                              SnackbarUtils.showMessage("Password do not match");
+                            }
+                          }
                         }
+
+                        // if (formKey.currentState!.validate()) {
+                        //   await AuthController().createAccount(
+                        //     emailController.text,
+                        //     passwordController.text,
+                        //   );
+                        // }
                        
                       },
                     ),

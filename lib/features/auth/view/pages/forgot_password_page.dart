@@ -1,6 +1,6 @@
 import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:define_todo_app/core/widgets/textfield_widget.dart';
-import 'package:define_todo_app/features/auth/controller/auth_controller.dart';
+import 'package:define_todo_app/features/auth/controller/auth_service.dart';
 import 'package:define_todo_app/features/auth/view/pages/login_page.dart';
 import 'package:define_todo_app/features/auth/view/pages/signup_page.dart';
 import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.dart';

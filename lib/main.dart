@@ -43,14 +43,15 @@ class App extends HookConsumerWidget {
       return null;
     }, []);
 
-    return MaterialApp.router(
+    return MaterialApp(
       scaffoldMessengerKey: scaffoldMessengerKey,
-      routerConfig: router,
+      
       debugShowCheckedModeBanner: false,
       title: 'Define Todo App',
       darkTheme: ref.watch(darkThemeProvider),
       themeMode: ThemeMode.system,
       theme: ref.watch(lightThemeProvider),
+      home: LoginPage(),
     );
   }
 }
