@@ -1,21 +1,14 @@
-import 'package:define_todo_app/core/dependencies/dependencies.dart';
-import 'package:define_todo_app/core/router/router.dart';
 import 'package:define_todo_app/core/theme/dark_theme.dart';
 import 'package:define_todo_app/core/theme/light_theme.dart';
-import 'package:define_todo_app/features/auth/view/pages/login_page.dart';
-import 'package:define_todo_app/features/home/view/pages/home_page.dart';
+import 'package:define_todo_app/features/auth/view/pages/signup_page.dart';
 import 'package:define_todo_app/firebase_options.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  DependencyInjection.registerDependencies();
+  // DependencyInjection.registerDependencies();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -29,29 +22,28 @@ class App extends HookConsumerWidget {
   const App({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    useEffect(() {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        FirebaseAuth.instance.authStateChanges().listen((user) {
-          if (user != null && user.emailVerified) {
-            App.navigatorKey.currentContext!.go(HomePage.routePath);
-          } else {
-            App.navigatorKey.currentContext!.go(LoginPage.routePath);
-          }
-        });
-      });
+    // useEffect(() {
+    //   WidgetsBinding.instance.addPostFrameCallback((_) {
+    //     FirebaseAuth.instance.authStateChanges().listen((user) {
+    //       if (user != null && user.emailVerified) {
+    //         App.navigatorKey.currentContext!.go(HomePage.routePath);
+    //       } else {
+    //         App.navigatorKey.currentContext!.go(LoginPage.routePath);
+    //       }
+    //     });
+    //   });
 
-      return null;
-    }, []);
+    //   return null;
+    // }, []);
 
     return MaterialApp(
       scaffoldMessengerKey: scaffoldMessengerKey,
-      
       debugShowCheckedModeBanner: false,
       title: 'Define Todo App',
       darkTheme: ref.watch(darkThemeProvider),
       themeMode: ThemeMode.system,
       theme: ref.watch(lightThemeProvider),
-      home: LoginPage(),
+      home: const SignupPage(),
     );
   }
 }

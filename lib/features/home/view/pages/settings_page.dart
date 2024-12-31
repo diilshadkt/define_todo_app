@@ -105,7 +105,7 @@ class SettingsPage extends StatelessWidget {
                       icon: Icons.logout_rounded,
                     ),
                     onTap: () {
-                      AuthController().logout();
+                      AuthService().logout();
                     }),
               ],
             ),

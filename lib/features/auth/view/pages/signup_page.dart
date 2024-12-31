@@ -1,16 +1,17 @@
-
 import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:define_todo_app/core/utils/snackbar_utils.dart';
 import 'package:define_todo_app/core/widgets/textfield_widget.dart';
 import 'package:define_todo_app/features/auth/controller/auth_service.dart';
+import 'package:define_todo_app/features/auth/controller/user_service.dart';
 import 'package:define_todo_app/features/auth/view/pages/login_page.dart';
 import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.dart';
+import 'package:define_todo_app/features/home/view/pages/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 
 class SignupPage extends HookWidget {
-  static const routePath = '/signup';
+  // static const routePath = '/signup';
   const SignupPage({super.key});
 
   @override
@@ -24,7 +25,6 @@ class SignupPage extends HookWidget {
     final colors = AppTheme.of(context).colors;
     final spaces = AppTheme.of(context).spaces;
     final typography = AppTheme.of(context).typography;
-
 
     return Form(
       key: formKey,
@@ -47,7 +47,11 @@ class SignupPage extends HookWidget {
                         size: spaces.space_100 * 3.6,
                       ),
                       onTap: () {
-                        context.go(LoginPage.routePath);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SignupPage(),
+                            ));
                       },
                     ),
                   ),
@@ -61,7 +65,7 @@ class SignupPage extends HookWidget {
                 padding: EdgeInsets.symmetric(horizontal: spaces.space_600),
                 child: Column(
                   children: [
-                     TextfieldWidget(
+                    TextfieldWidget(
                       controller: nameController,
                       hintText: "Full Name",
                     ),
@@ -92,18 +96,45 @@ class SignupPage extends HookWidget {
                     ),
                     SubmitButtonWidget(
                       onPressed: () async {
-                        try{
-                          if(nameController.text.isEmpty ||
-                          emailController.text.isEmpty ||
-                          passwordController.text.isEmpty ||
-                          confirmController.text.isEmpty
-                          ){
-                            SnackbarUtils.showMessage("Please fill all the fields");
-                          }else{
-                            if(passwordController.text != confirmController.text){
-                              SnackbarUtils.showMessage("Password do not match");
+                        try {
+                          if (nameController.text.isEmpty ||
+                              emailController.text.isEmpty ||
+                              passwordController.text.isEmpty ||
+                              confirmController.text.isEmpty) {
+                            SnackbarUtils.showMessage(
+                                "Please fill all the fields");
+                          } else {
+                            if (passwordController.text !=
+                                confirmController.text) {
+                              SnackbarUtils.showMessage(
+                                  "Password do not match");
+                            } else {
+                              UserCredential userCredential =
+                                  await AuthService().signUp(
+                                      emailController.text,
+                                      passwordController.text);
+
+                              if (userCredential.user != null) {
+                                await UserService().addUser(
+                                  nameController.text,
+                                  emailController.text,
+                                  userCredential.user!.uid,
+                                );
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomePage(),
+                                    ));
+                                SnackbarUtils.showMessage(
+                                    "Account created successfully");
+                              } else {
+                                SnackbarUtils.showMessage(
+                                    "Somethink went wrong");
+                              }
                             }
                           }
+                        } on FirebaseAuthException catch (e) {
+                          SnackbarUtils.showMessage(e.message.toString());
                         }
 
                         // if (formKey.currentState!.validate()) {
@@ -112,7 +143,6 @@ class SignupPage extends HookWidget {
                         //     passwordController.text,
                         //   );
                         // }
-                       
                       },
                     ),
                     SizedBox(
@@ -138,7 +168,11 @@ class SignupPage extends HookWidget {
                                 decoration: TextDecoration.underline),
                           ),
                           onTap: () {
-                            context.go(LoginPage.routePath);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginPage(),
+                                ));
                           },
                         )
                       ],

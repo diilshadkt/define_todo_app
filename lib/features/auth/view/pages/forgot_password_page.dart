@@ -1,15 +1,15 @@
 import 'package:define_todo_app/core/theme/app_theme.dart';
 import 'package:define_todo_app/core/widgets/textfield_widget.dart';
-import 'package:define_todo_app/features/auth/controller/auth_service.dart';
 import 'package:define_todo_app/features/auth/view/pages/login_page.dart';
 import 'package:define_todo_app/features/auth/view/pages/signup_page.dart';
 import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:go_router/go_router.dart';
 
 class ForgotPasswordPage extends HookWidget {
-  static const routePath = "/forgot";
+  // static const routePath = "/forgot";
   const ForgotPasswordPage({super.key});
 
   @override
@@ -41,7 +41,11 @@ class ForgotPasswordPage extends HookWidget {
                         size: spaces.space_100 * 3.6,
                       ),
                       onTap: () {
-                        context.go(LoginPage.routePath);
+                         Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginPage(),
+                                ));
                       },
                     ),
                   ),
@@ -56,7 +60,7 @@ class ForgotPasswordPage extends HookWidget {
                 child: Column(
                   children: [
                     TextfieldWidget(
-                        validator: AuthController().validateEmail,
+                        // validator: AuthController().validateEmail,
                         controller: forgotEmailController,
                         hintText: "Email"),
                     SizedBox(
@@ -73,10 +77,10 @@ class ForgotPasswordPage extends HookWidget {
                     ),
                     SubmitButtonWidget(
                       onPressed: () async {
-                        if (forgotFormKey.currentState!.validate()) {
-                          AuthController()
-                              .forgotPassword(forgotEmailController.text);
-                        }
+                        // if (forgotFormKey.currentState!.validate()) {
+                        //   AuthController()
+                        //       .forgotPassword(forgotEmailController.text);
+                        // }
                       },
                     ),
                     SizedBox(
@@ -102,7 +106,11 @@ class ForgotPasswordPage extends HookWidget {
                                 decoration: TextDecoration.underline),
                           ),
                           onTap: () {
-                            context.go(SignupPage.routePath);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SignupPage(),
+                                ));
                           },
                         )
                       ],

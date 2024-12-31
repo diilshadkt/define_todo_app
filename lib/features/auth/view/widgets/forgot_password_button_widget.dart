@@ -1,7 +1,5 @@
-
 import 'package:define_todo_app/features/auth/view/pages/forgot_password_page.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class ForgotPasswordButtonWidget extends StatelessWidget {
   const ForgotPasswordButtonWidget({super.key});
@@ -12,7 +10,11 @@ class ForgotPasswordButtonWidget extends StatelessWidget {
       child: const Text("Forgot Password?",
           style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600)),
       onTap: () {
-        context.go(ForgotPasswordPage.routePath);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ForgotPasswordPage(),
+            ));
       },
     );
   }

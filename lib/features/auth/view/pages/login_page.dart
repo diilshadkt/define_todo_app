@@ -1,16 +1,20 @@
+import 'dart:developer';
 
 import 'package:define_todo_app/core/theme/app_theme.dart';
+import 'package:define_todo_app/core/utils/snackbar_utils.dart';
 import 'package:define_todo_app/core/widgets/textfield_widget.dart';
 import 'package:define_todo_app/features/auth/controller/auth_service.dart';
 import 'package:define_todo_app/features/auth/view/pages/signup_page.dart';
 import 'package:define_todo_app/features/auth/view/widgets/forgot_password_button_widget.dart';
 import 'package:define_todo_app/features/auth/view/widgets/submit_button_widget.dart';
+import 'package:define_todo_app/features/home/view/pages/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class LoginPage extends HookWidget {
-  static const routePath = '/login';
+  // static const routePath = '/login';
   const LoginPage({super.key});
 
   @override
@@ -19,8 +23,6 @@ class LoginPage extends HookWidget {
 
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
-    
-
 
     final colors = AppTheme.of(context).colors;
     final spaces = AppTheme.of(context).spaces;
@@ -50,7 +52,7 @@ class LoginPage extends HookWidget {
                     ),
                     TextfieldWidget(
                       controller: emailController,
-                      validator: AuthController().validateEmail,
+                      // validator: AuthController().validateEmail,
                       hintText: "Email",
                     ),
                     SizedBox(
@@ -58,16 +60,14 @@ class LoginPage extends HookWidget {
                     ),
                     TextfieldWidget(
                         controller: passwordController,
-                        validator: AuthController().validatePassword,
+                        // validator: AuthController().validatePassword,
                         hintText: "Password"),
                     SizedBox(
                       height: spaces.space_50,
                     ),
                     const Row(
                       children: [
-                        ForgotPasswordButtonWidget(
-                          
-                        ),
+                        ForgotPasswordButtonWidget(),
                       ],
                     ),
                     SizedBox(
@@ -76,13 +76,28 @@ class LoginPage extends HookWidget {
                     // submit button part.
                     SubmitButtonWidget(
                       onPressed: () async {
-
-                        if (loginFormKey.currentState!.validate()) {
-                          await AuthController().login(
-                              emailController.text, passwordController.text);
+                        try {
+                          if (emailController.text.isEmpty &&
+                              passwordController.text.isEmpty) {
+                            SnackbarUtils.showMessage(
+                                "Please fill all the fields");
+                          } else {
+                            await AuthService().login(
+                                emailController.text, passwordController.text);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          }
+                        } on FirebaseAuthException catch (e) {
+                          SnackbarUtils.showMessage("Something Went Wrong");
+                          log(e.message.toString());
                         }
+                        // if (loginFormKey.currentState!.validate()) {
+                        //   await AuthController().login(
+                        //       emailController.text, passwordController.text);
+                        // }
                       },
-                      
                     ),
                     SizedBox(
                       height: spaces.space_400,
@@ -107,7 +122,11 @@ class LoginPage extends HookWidget {
                                 decoration: TextDecoration.underline),
                           ),
                           onTap: () {
-                            context.go(SignupPage.routePath);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SignupPage(),
+                                ));
                           },
                         )
                       ],

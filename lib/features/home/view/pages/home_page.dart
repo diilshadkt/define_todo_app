@@ -8,20 +8,18 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
-  final TodoController todoController = Get.put(TodoController());
-  final String userId;
+  // final TodoController todoController = Get.put(TodoController());
+  // final String userId;
 
   static const routePath = "/home";
-  HomePage({super.key, required this.userId});
+  HomePage({super.key, });
 
   @override
   Widget build(BuildContext context) {
     final colors = AppTheme.of(context).colors;
     final spaces = AppTheme.of(context).spaces;
     final typography = AppTheme.of(context).typography;
-    final todos = todoController.todos;
-
-    todoController.getTodos(userId);
+   
 
     void showAddTodoDialog() {
       showDialog(
@@ -41,16 +39,16 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         TextField(
-                          controller: todoController.titleController,
+                          
                           decoration: const InputDecoration(
                               hintText: 'Title', border: InputBorder.none),
                           onSubmitted: (_) {
-                            final title = todoController.titleController.text;
-                            final subtitle = todoController.taskController.text;
-                            todoController.addTodo(userId, title, subtitle);
-                            todoController.titleController.clear();
-                            todoController.taskController.clear();
-                            context.pop();
+                            // final title = todoController.titleController.text;
+                            // final subtitle = todoController.taskController.text;
+                            // todoController.addTodo(userId, title, subtitle);
+                            // todoController.titleController.clear();
+                            // todoController.taskController.clear();
+                            // context.pop();
                           },
                         ),
                       ],
@@ -123,7 +121,7 @@ class HomePage extends StatelessWidget {
                 return SizedBox(
                   height: MediaQuery.sizeOf(context).height / 1.4,
                   child: GridView.builder(
-                    itemCount: todos.length + 1,
+                    itemCount: 5,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: spaces.space_200,
@@ -150,7 +148,7 @@ class HomePage extends StatelessWidget {
                               child: const Icon(Icons.add)),
                         );
                       } else {
-                        final todo = todos[index - 1];
+                        // final todo = todos[index - 1];
 
                         return InkWell(
                           onTap: () {
@@ -174,7 +172,7 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   const Icon(Icons.task),
                                   Text(
-                                    todo.title,
+                                    "djddjf",
                                     style: typography.h800,
                                   ),
                                   Align(
